@@ -1,0 +1,83 @@
+<!--
+Jinga é uma linguagem de templates que permite o uso de Python em documentos HTML.
+
+ Ela é muito útil pois permite que mesmo sem usar JavaScript, podemos renderizar todas as notas do usuário,
+ mostrar informações de usuário e fazer outras diversas coisas, nessa linguagem de modelagem.
+
+
+Neste template, que é o template base, será feito o tema do website.
+Ou seja, a aparência principal (a interface básica) do website será definida aqui.
+
+É necessário que este template seja extendido à outro (que será a página 'home') para ser usado.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta lang="pt-br">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Links para bootstrap: CDNs (redes de entrega de conteúdo -->
+        <!-- Eles permitirão que sejam carregados um CSS e um JS personalizados para a página por completo -->
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          crossorigin="anonymous"
+        />
+
+        <!-- Primeiro recurso do Jinga: código em Python delimitado por '{} %%' -->
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Ao definir um bloco, estabelece-se que ele pode ser modificado por templates filhos deste -->
+    </head>
+    <body>
+        <!-- Aqui será criada uma barra de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">  <!-- Classes vindas do Bootstrap -->
+            <!-- Adição de botões -->
+
+            <!-- Para telas pequenas (expandir navbar) -->
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggle-icon"></span>
+            </button>
+
+            <!-- Itens de navegação -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                    <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign up</a>
+                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    <a class="nav-item nav-link" id="home" href="/">Home</a>
+                </div>
+            </div>
+        </nav>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+
+        <!-- Carregando arquivos da pasta static -->
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='index.js') }}"
+        ></script>
+        <!-- Os }{ indicam que se trata de uma expressão Python -->
+    </body>
+</html>
