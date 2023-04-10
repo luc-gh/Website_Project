@@ -42,7 +42,7 @@ Ou seja, a aparência principal (a interface básica) do website será definida 
             <!-- Adição de botões -->
 
             <!-- Para telas pequenas (expandir navbar) -->
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                 <span class="navbar-toggle-icon"></span>
             </button>
 
@@ -56,6 +56,11 @@ Ou seja, a aparência principal (a interface básica) do website será definida 
                 </div>
             </div>
         </nav>
+
+        <div class="container">  <!-- Qualquer coisa pode ser adicionada a este bloco -->
+            {% block content %}
+            {% endblock %}
+        </div>
 
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
