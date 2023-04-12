@@ -5,5 +5,32 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Sign up</h2>
+    <form method="post">
+        <h3 align="center">Sign up</h3>
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input class="form-control" id="email" name="email" placeholder="Enter email" type="email">
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">Nome</label>
+            <input class="form-control" id="firstName" name="firstName" placeholder="Enter first name" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="password1">Senha</label>
+            <input class="form-control" id="password1" name="password1" placeholder="Enter password" type="password">
+        </div>
+
+        <div class="form-group">
+            <label for="password2">Confirmação de senha</label>
+            <input class="form-control" id="password2" name="password2" placeholder="Confirm password" type="password">
+        </div>
+
+        <br/>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock %}
+
