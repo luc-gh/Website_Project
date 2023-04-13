@@ -3,6 +3,10 @@
 
 # Inicializando a aplicação Flask
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy  # Para o banco de dados
+
+db = SQLAlchemy()  # Cria bd
+DB_NAME = "database.db"
 
 
 def criar_app():
@@ -10,6 +14,11 @@ def criar_app():
 
     # Configuração que tornará encriptados/protegidos os dados de seção relacionados ao website
     app.config['SECRET_KEY'] = 'ramdom-secret-key'  # A chave é uma string qualquer
+
+    # Definindo onde o database será armazenado e como será usado:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    # Inicializando db:
+    db.init_app(app)
 
     # Registrando blueprints
     from .views import views
