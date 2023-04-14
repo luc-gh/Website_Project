@@ -4,8 +4,9 @@
 # Inicializando a aplicação Flask
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy  # Para o banco de dados
+from os import path
 
-db = SQLAlchemy()  # Cria bd
+db = SQLAlchemy()  # Cria instância do bd
 DB_NAME = "database.db"
 
 
@@ -27,4 +28,16 @@ def criar_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
+    # Garantindo criação do bd:
+    from .models import User, Note
+    with app.app_context():
+        db.create_all()
+    create_database()
+
     return app
+
+
+def create_database():
+    if not path.exists('website/' + DB_NAME):
+        db.create_all()
+        print('Banco de dados criado')
