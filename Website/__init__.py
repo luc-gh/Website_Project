@@ -29,15 +29,10 @@ def criar_app():
     app.register_blueprint(auth, url_prefix='/')
 
     # Garantindo criação do bd:
-    from .models import User, Note
+    from . import models
     with app.app_context():
         db.create_all()
-    create_database()
+        # BD criado
 
     return app
 
-
-def create_database():
-    if not path.exists('website/' + DB_NAME):
-        db.create_all()
-        print('Banco de dados criado')
