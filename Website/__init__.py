@@ -5,6 +5,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy  # Para o banco de dados
 from os import path
+from flask_login import LoginManager
 
 db = SQLAlchemy()  # Cria instância do bd
 DB_NAME = "database.db"
@@ -20,7 +21,6 @@ def criar_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     # Inicializando db:
     db.init_app(app)
-
     # Registrando blueprints
     from .views import views
     from .auth import auth
@@ -33,6 +33,14 @@ def criar_app():
     with app.app_context():
         db.create_all()
         # BD criado
+
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(id):
+        return models.User.query.get(int(id))
 
     return app
 
